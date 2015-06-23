@@ -1,8 +1,0 @@
-
-CONF_FILE=/usr/local/angel.com/services/<%=@service%>/scripts/appdynamics.conf
-if [ -f $CONF_FILE  ]; then
- . $CONF_FILE
-
-else
-	echo "App dynamics configuration file $CONF_FILE not setup"
-fi
