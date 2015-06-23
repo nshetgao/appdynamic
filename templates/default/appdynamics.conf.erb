@@ -1,0 +1,9 @@
+#Should be sourced as part of run.conf remove the .off extension to turn it on
+
+
+#Java agent must come before all -D properties
+
+JAVA_OPTS="-javaagent:/usr/local/angel.com/appdynamics/javaagent.jar -XX:CompileCommand=exclude,com/singularity/ee/agent/appagent/services/transactionmonitor/common/a,onMethodBegin
+ $JAVA_OPTS"
+#System properties can be safely done at the end
+JAVA_OPTS="$JAVA_OPTS -Dappdynamics.agent.applicationName=<%=node['appdynamics'][@service]['application_name']%> -Dappdynamics.agent.nodeName=<%=node[:fqdn]%>-<%=@service%> -Dappdynamics.agent.tierName=angel-<%=@service%>-service -Dappdynamics.agent.runtime.dir=$JBOSS_LOG_FOLDER_NAME/appdynamics"
